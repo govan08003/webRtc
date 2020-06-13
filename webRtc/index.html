@@ -23,7 +23,7 @@
 
     #videos video {
       display: inline-block;
-      width: 80%;
+      width: 35%;
     }
 
     #chat {
@@ -69,10 +69,18 @@
       font-weight: bold;
       text-decoration: none
     }
+    .room-name {
+      margin: 10px;
+    }
   </style>
 </head>
 <body>
   <div id="chat">
+        <div class="room-name">
+          roomName:
+          <input id="roomNameVal" type="text" />
+          <button id="roomNameBtn">send</button>
+        </div>
     <div class="msgs" id="msgs"></div>
     <input type="file" id="fileIpt" class="fileIpt">
     <button id="sendFileBtn" class="sendFileBtn">发送文件</button>
@@ -84,17 +92,27 @@
   </div>
   <div id="files">
   </div>
+
 </body>
 <script type="text/javascript" src="/SkyRTC-client.js"></script>
 <script type="text/javascript">
   var videos = document.getElementById("videos");
   var sendBtn = document.getElementById("sendBtn");
   var msgs = document.getElementById("msgs");
+  var roomNameVal = document.getElementById("roomNameVal");
+  var roomNameBtn = document.getElementById("roomNameBtn");
   var sendFileBtn = document.getElementById("sendFileBtn");
   var files = document.getElementById("files");
   var rtc = SkyRTC();
 
   /**********************************************************/
+  roomNameBtn.onclick = function (event) {
+    if (!roomNameVal.value) {
+        return;
+      }
+      location.href = '#/'+ roomNameVal.value;
+      location.reload();
+    };
   sendBtn.onclick = function(event){
     var msgIpt = document.getElementById("msgIpt"),
         msg = msgIpt.value,
